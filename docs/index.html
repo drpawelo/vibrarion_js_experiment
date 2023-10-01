@@ -5,16 +5,17 @@
 </head>
 <body>
 
-<button onclick="vibratePhone()">Vibrate Phone</button>
+<button onclick="vibratePhone()">Vibrate Phone 2</button>
 
 <script>
 function vibratePhone() {
   // Check if the browser supports the Vibration API
   if (navigator.vibrate) {
     // Vibrate for 1000 milliseconds (1 second)
+	alert('Vibration IS supported in this browser.');
     navigator.vibrate(1000);
   } else {
-    alert('Vibration not supported in this browser.');
+    alert('Vibration NOT supported in this browser.');
   }
 }
 </script>
