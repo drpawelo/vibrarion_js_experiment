@@ -4,12 +4,12 @@
   <title>Vibration Example</title>
 </head>
 <body onload="availabilityMessage()">
-<button onclick="playGame()">Vibrate Phone v0.17</button>
+<button onclick="playGame()" style="font-size: 3em;">Vibrate Phone v0.17</button>
 <script>
 
 function patternForOneBuzz(){
 	let pattern = [];
-	let startGap = 200;
+	let startGap = 400;
 	let jump = 50;
 	let buzz = 50;
 	for (let currentGap= -startGap; currentGap < startGap; currentGap+= jump) {
