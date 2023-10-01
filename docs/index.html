@@ -5,14 +5,14 @@
 </head>
 <body onload="availabilityMessage()">
 
-<button onclick="playGame()">Vibrate Phone v0.14</button>
+<button onclick="playGame()">Vibrate Phone v0.15</button>
 
 <script>
 
 function patternForOneBuzz(){
 	let pattern = [];
 	let startGap = 200;
-	let jump = 20;
+	let jump = 10;
 	let buzz = 25;
 	for (let currentGap= -startGap; currentGap < startGap; currentGap+= jump) {
 			pattern.push(buzz); //buzz
@@ -43,10 +43,11 @@ const vibratePhone = async (howManyTimes) =>{
 		console.log("about to start");
 		console.log(pattern);
 		navigator.vibrate(pattern);
-		var sumMilliseconds = pattern.reduce((accumulator, currentValue) => {
+		let sumMilliseconds = pattern.reduce((accumulator, currentValue) => {
 			return accumulator + currentValue
 		},0);
-		setTimeout(finishGame, sumMilliseconds);
+		let margin = 200;
+		setTimeout(finishGame, sumMilliseconds + margin);
 	}
 }
 function getRandomInt(min, max) {
