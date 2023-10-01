@@ -8,15 +8,15 @@
 <button onclick="playGame()">Vibrate Phone 3</button>
 
 <script>
-function vibratePhone(howManyTimes) {
+const vibratePhone = async (howManyTimes) =>{
   // Check if the browser supports the Vibration API
   if (navigator.vibrate) {
     // Vibrate for 1000 milliseconds (1 second)
 	alert('Vibration IS supported in this browser.');
 	let pattern = [];
 	for (let i=0; i < howManyTimes; i++) {
-		pattern.push(500);
-		pattern.push(500);
+		pattern.push(300);
+		pattern.push(100);
 	}
 
     navigator.vibrate(pattern);
@@ -30,10 +30,10 @@ function getRandomInt(min, max) {
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-function playGame(){
-	const randomNumOfVibrations = getRandomInt(3, 6);
+async function playGame(){
+	const randomNumOfVibrations = getRandomInt(2, 5);
 	alert("count the vibrarions!");
-    vibratePhone(randomNumOfVibrations);
+    await vibratePhone(randomNumOfVibrations);
 	let answer = prompt('how many did you count?');
 	let message = `you guessed ${answer}, and there were ${randomNumOfVibrations}.`
 	message += randomNumOfVibrations===answer? " CONGRATS!" : "OH NO!"
