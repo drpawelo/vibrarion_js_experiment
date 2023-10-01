@@ -5,7 +5,7 @@
 </head>
 <body onload="availabilityMessage()">
 
-<button onclick="playGame()">Vibrate Phone 4</button>
+<button onclick="playGame()">Vibrate Phone 5</button>
 
 <script>
 const availabilityMessage = ()=>{
@@ -20,22 +20,12 @@ const availabilityMessage = ()=>{
 const vibratePhone = async (howManyTimes) =>{
   // Check if the browser supports the Vibration API
   if (navigator.vibrate) {
-
-    // Vibrate for 1000 milliseconds (1 second)
-	alert('Vibration IS supported in this browser.');
-
-} else {
-    alert('Vibration NOT supported in this browser.');
-  }
 	let pattern = [];
 	for (let i=0; i < howManyTimes; i++) {
 		pattern.push(300);
 		pattern.push(100);
 	}
-
-    navigator.vibrate(pattern);
-
-
+    await navigator.vibrate(pattern);
 }
 function getRandomInt(min, max) {
   min = Math.ceil(min);
