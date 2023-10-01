@@ -5,7 +5,7 @@
 </head>
 <body onload="availabilityMessage()">
 
-<button onclick="playGame()">Vibrate Phone v0.15</button>
+<button onclick="playGame()">Vibrate Phone v0.16</button>
 
 <script>
 
@@ -14,7 +14,7 @@ function patternForOneBuzz(){
 	let startGap = 200;
 	let jump = 10;
 	let buzz = 25;
-	for (let currentGap= -startGap; currentGap < startGap; currentGap+= jump) {
+	for (let currentGap= -startGap; currentGap < startGap; currentGap+= parseInt(Math.abs(currentGap)/10)) {
 			pattern.push(buzz); //buzz
 			pattern.push(Math.abs(currentGap)); //break
 	}
