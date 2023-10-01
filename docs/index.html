@@ -5,7 +5,7 @@
 </head>
 <body onload="availabilityMessage()">
 
-<button onclick="playGame()">Vibrate Phone 5</button>
+<button onclick="playGame()">Vibrate Phone 6</button>
 
 <script>
 function availabilityMessage(){
@@ -50,9 +50,16 @@ async function playGame(){
 
 async function finishGame(){
 	let answer = prompt('how many did you count?');
-	let message = `you guessed ${answer}, and there were ${randomNumOfVibrations}.`
-	message += randomNumOfVibrations===answer? " CONGRATS!" : "OH NO!"
-	alert(message);
+	if (Number.isInteger(parseInt(answer, 10))){
+		let message = `you guessed ${answer}, and there were ${randomNumOfVibrations}.`
+		message += randomNumOfVibrations===parseInt(answer)? " CONGRATS!" : "OH NO!"
+		alert(message);
+	}else{
+		alert(`${answer} does not look like a number`);
+	}
+  
+
+	
 }
 
 </script>
