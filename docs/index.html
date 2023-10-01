@@ -8,6 +8,18 @@
 <button onclick="playGame()">Vibrate Phone v0.7</button>
 
 <script>
+
+function patternForOneBuzz(){
+	let pattern = [];
+	startGap = 20; 
+	for (let currentGap= -startGap; currentGap < Math.abs(startGap); currentGap++) {
+			pattern.push(5); //buzz
+			pattern.push(Math.abs(currentGap)); //break
+	}
+	return pattern;
+}
+
+
 function availabilityMessage(){
 	if (navigator.vibrate) {
 		// Vibrate for 1000 milliseconds (1 second)
@@ -24,10 +36,10 @@ const vibratePhone = async (howManyTimes) =>{
 	if (navigator.vibrate) {
 		let pattern = [];
 		for (let i=0; i < howManyTimes; i++) {
-			pattern.push(300);
-			pattern.push(100);
+			pattern.push(...patternForOneBuzz());
 		}
 		console.log("about to start");
+		console.log(pattern);
 		navigator.vibrate(pattern);
 		var sumMilliseconds = pattern.reduce((accumulator, currentValue) => {
 			return accumulator + currentValue
