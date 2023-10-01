@@ -3,16 +3,30 @@
 <head>
   <title>Vibration Example</title>
 </head>
-<body>
+<body onload="availabilityMessage()">
 
-<button onclick="playGame()">Vibrate Phone 3</button>
+<button onclick="playGame()">Vibrate Phone 4</button>
 
 <script>
+const availabilityMessage = ()=>{
+	if (navigator.vibrate) {
+		// Vibrate for 1000 milliseconds (1 second)
+		alert('Vibration IS supported in this browser.');
+	} else {
+		alert('Vibration NOT supported in this browser.');
+	}
+}
+	
 const vibratePhone = async (howManyTimes) =>{
   // Check if the browser supports the Vibration API
   if (navigator.vibrate) {
+
     // Vibrate for 1000 milliseconds (1 second)
 	alert('Vibration IS supported in this browser.');
+
+} else {
+    alert('Vibration NOT supported in this browser.');
+  }
 	let pattern = [];
 	for (let i=0; i < howManyTimes; i++) {
 		pattern.push(300);
@@ -21,9 +35,7 @@ const vibratePhone = async (howManyTimes) =>{
 
     navigator.vibrate(pattern);
 
-  } else {
-    alert('Vibration NOT supported in this browser.');
-  }
+
 }
 function getRandomInt(min, max) {
   min = Math.ceil(min);
