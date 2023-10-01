@@ -5,19 +5,42 @@
 </head>
 <body>
 
-<button onclick="vibratePhone()">Vibrate Phone 2</button>
+<button onclick="playGame()">Vibrate Phone 2</button>
 
 <script>
-function vibratePhone() {
+function vibratePhone(howManyTimes) {
   // Check if the browser supports the Vibration API
   if (navigator.vibrate) {
     // Vibrate for 1000 milliseconds (1 second)
 	alert('Vibration IS supported in this browser.');
-    navigator.vibrate(1000);
+	let pattern = [];
+	for (let i=0; i < howManyTimes; i++) {
+		pattern.push(500);
+		pattern.push(500);
+	}
+
+    navigator.vibrate(pattern);
+
   } else {
     alert('Vibration NOT supported in this browser.');
   }
 }
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+function playGame(){
+	const randomNumOfVibrations = getRandomInt(3, 6);
+	alert("count the vibrarions!");
+    vibratePhone(randomNumOfVibrations);
+	let answer = prompt('how many did you count?');
+	let message = `you guessed ${answer}, and there were ${randomNumOfVibrations}.`
+	message += randomNumOfVibrations===answer? " CONGRATS!" : "OH NO!"
+	alert(message);
+
+}
+
 </script>
 
 </body>
