@@ -8,7 +8,7 @@
 <button onclick="playGame()">Vibrate Phone 5</button>
 
 <script>
-const availabilityMessage = ()=>{
+function availabilityMessage(){
 	if (navigator.vibrate) {
 		// Vibrate for 1000 milliseconds (1 second)
 		alert('Vibration IS supported in this browser.');
@@ -19,13 +19,14 @@ const availabilityMessage = ()=>{
 	
 const vibratePhone = async (howManyTimes) =>{
   // Check if the browser supports the Vibration API
-  if (navigator.vibrate) {
-	let pattern = [];
-	for (let i=0; i < howManyTimes; i++) {
-		pattern.push(300);
-		pattern.push(100);
+	if (navigator.vibrate) {
+		let pattern = [];
+		for (let i=0; i < howManyTimes; i++) {
+			pattern.push(300);
+			pattern.push(100);
+		}
+		await navigator.vibrate(pattern);
 	}
-    await navigator.vibrate(pattern);
 }
 function getRandomInt(min, max) {
   min = Math.ceil(min);
