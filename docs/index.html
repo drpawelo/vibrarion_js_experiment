@@ -4,18 +4,40 @@
   <title>Vibration Example</title>
 </head>
 <body onload="availabilityMessage()">
-<button onclick="playGame()" style="font-size: 3em;">Vibrate Phone v0.17</button>
+<button onclick="playGame()" style="font-size: 3em;">Vibrate Phone v0.20</button>
+</br>
+</br>
+</br>
+<p>break</p>
+<input id="slider_jump_ms" type="range" min="0" max="500" step="10"  value="50" oninput="this.nextElementSibling.value = this.value">
+<output>50</output>
+</br>
+</br>
+</br>
+<p>buzz</p>
+<input id="slider_buzz_ms" type="range" min="0" max="500" step="10"  value="50" oninput="this.nextElementSibling.value = this.value">
+<output>50</output>
+
 <script>
 
-function patternForOneBuzz(){
+function patternForOneBuzz(jump_ms, buzz_ms){
+	// jump eg 10ms, buzz_max_ms 10ms, length_multiplier eg. 2 for x2 long
 	let pattern = [];
-	let startGap = 400;
-	let jump = 50;
-	let buzz = 50;
-	for (let currentGap= -startGap; currentGap < startGap; currentGap+= jump) {
-			pattern.push(buzz); //buzz
-			pattern.push(Math.abs(currentGap)); //break
+	// let startGap = jump_ms;
+	// let jump = 50;
+	// let buzz = 50;
+	for (let degrees = 0; degrees <= 180; degrees+=10) {
+  		let fraction = 1 / (degrees / 180);
+		let length = Math.sin(Math.PI / fraction);
+  		console.log(degrees,fraction, length, length*buzz_ms);
+		pattern.push(parseInt(length*buzz_ms)); //buzz
+		pattern.push(parseInt(jump_ms)); //break
 	}
+
+	// for (let currentGap= -startGap; currentGap < startGap; currentGap+= jump) {
+	// 		pattern.push(buzz); //buzz
+	// 		pattern.push(Math.abs(currentGap)); //break
+	// }
 	return pattern;
 }
 
@@ -28,10 +50,12 @@ function availabilityMessage(){
 	}
 }
 	
-const vibratePhone =  (howManyTimes) =>{
+const vibratePhone =  (howManyTimes, jump_ms = 50, buzz_ms=100) =>{
+
+
   // Check if the browser supports the Vibration API
   console.log("about to start vibrating");
-  let oneBuzz = patternForOneBuzz();
+  let oneBuzz = patternForOneBuzz(jump_ms, buzz_ms);
 	if (navigator.vibrate) {
 		let pattern = [];
 		for (let i=0; i < howManyTimes; i++) {
@@ -44,7 +68,7 @@ const vibratePhone =  (howManyTimes) =>{
 			return accumulator + currentValue
 		},0);
 		let margin = 200;
-		setTimeout(finishGame, sumMilliseconds + margin);
+		// setTimeout(finishGame, sumMilliseconds + margin);
 	}
 }
 function getRandomInt(min, max) {
@@ -55,9 +79,13 @@ function getRandomInt(min, max) {
 let randomNumOfVibrations = 1;
 
 async function playGame(){
-	randomNumOfVibrations = getRandomInt(2, 5);
-	alert("count the vibrarions!");
-    vibratePhone(randomNumOfVibrations);
+	randomNumOfVibrations = 1;//getRandomInt(2, 5);
+	// alert("count the vibrarions!");
+	var jump_ms = document.getElementById("slider_jump_ms").value //gets the oninput value
+	var buzz_ms = document.getElementById("slider_buzz_ms").value //gets the oninput value
+
+
+    vibratePhone(randomNumOfVibrations, jump_ms, buzz_ms);
 }
 
 async function finishGame(){
