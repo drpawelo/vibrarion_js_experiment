@@ -13,13 +13,13 @@ src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
 </br>
 </br>
 <p>break</p>
-<input id="slider_jump_ms" type="range" min="0" max="250" step="10"  value="50" oninput="this.nextElementSibling.value = this.value; updateGraph();" style="width: 100%;">
+<input id="slider_jump_ms" type="range" min="0" max="100" step="5"  value="10" oninput="this.nextElementSibling.value = this.value; updateGraph();" style="width: 100%;">
 <output>50</output>
 </br>
 </br>
 </br>
 <p>buzz</p>
-<input id="slider_buzz_ms" type="range" min="0" max="250" step="10"  value="100" oninput="this.nextElementSibling.value = this.value; updateGraph();" style="width: 100%;">
+<input id="slider_buzz_ms" type="range" min="0" max="100" step="5"  value="25" oninput="this.nextElementSibling.value = this.value; updateGraph();" style="width: 100%;">
 <output>50</output>
 </br>
 </br>
@@ -155,7 +155,7 @@ function updateGraph(){
 				yAxes: [{
 					display: true,
 					ticks: {
-						max: 250,   
+						max: 100,   
 						beginAtZero: true   
 					}
 				}]
